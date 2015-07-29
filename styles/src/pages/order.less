@@ -1,0 +1,368 @@
+/**
+ * "order" page styles
+ *
+ * @author Viacheslav Lotsmanov
+ * @encoding utf-8
+ */
+
+html body main form.order_form {
+	.pageBlock;
+	padding-bottom: 59px;
+
+	@p: 15px; // padding
+	@fw: 430px; // field width
+	@ifs: 22px; // input font size
+	@ilh: @ifs + 2px; // input line height
+	@ip: 10px; // input padding
+	@nw: 130px - @p; // name width
+	@dw: 170px; // description width
+	@offsetLeft: 27px;
+
+	&, span, input, textarea {
+		vertical-align: top;
+	}
+
+	& > .description {
+		display: block;
+		clear: both;
+		padding-top: 29px;
+		padding-bottom: 42px;
+		width: @fw + @nw + @dw + @p + @p + 2px;
+		margin: 0 auto;
+		.relative(auto, -@offsetLeft);
+	} // & > .description
+
+	.files { // {{{1
+		display: block;
+		clear: both;
+		width: @fw + @nw + @dw + @p + @p + 2px;
+		margin: 0 auto;
+		padding-bottom: 25px + 7px;
+		.relative(auto, -@offsetLeft);
+
+		.name {
+			display: block;
+			width: auto;
+			padding-bottom: 2px;
+		} // .name
+
+		@w: 432px;
+
+		ul.files_list { // {{{2
+			@subW: 351px;
+
+			padding: 0; margin: 0;
+			display: block;
+			width: @w;
+			overflow: hidden;
+			margin-left: @nw + @p;
+
+			li { // {{{3
+				@h: 44px;
+				@offsetLeft: 43px;
+
+				background: none; padding: 0; margin: 0;
+				display: block;
+				width: @w;
+				height: @h;
+				.relative;
+				margin-top: 11px;
+
+				&:before { // {{{4
+					&:extend(.icon-document_sheet);
+					.pseudoBlock;
+					.absolute(0, auto, auto, 0);
+					z-index: 5;
+				} // &:before }}}4
+
+				&:after { // {{{4
+					.pseudoBlock;
+					.absolute(0, 0);
+					.size(38px, @h);
+					z-index: 5;
+					background: white;
+				} // &:after }}}4
+
+				.filename { // {{{4
+					display: block;
+					.absolute(auto, auto, 18px - 3px, @offsetLeft);
+					white-space: nowrap;
+					font: @contentFont;
+					.fontMetrics(14px, 16px);
+					min-width: @subW;
+					z-index: 3;
+				} // .filename }}}4
+
+				.remove { // {{{4
+					.linkNoLine;
+					&:extend(.icon-red_button_abort);
+					background: none;
+					display: block;
+					.absolute(8px, 7px);
+					z-index: 10;
+					cursor: pointer;
+
+					&:before { &:extend(.icon-red_button_abort); }
+					&:after { &:extend(.icon-red_button_abort_active); }
+
+					.animatedIcon;
+				} // .remove }}}4
+
+				.progress_bar { // {{{4
+					@h: 8px;
+
+					display: block;
+					background: #eaf0f2;
+					.size(@subW, @h);
+					overflow: hidden;
+					.absolute(auto, auto, 0, @offsetLeft);
+
+					.progress {
+						display: block;
+						background: #cbd9df;
+						.size(auto, @h);
+						.absolute(0, auto, auto, 0);
+					} // .progress
+				} // .progress_bar }}}4
+
+				&.uploaded .remove { // {{{4
+					&:before { &:extend(.icon-red_button_close); }
+					&:after { &:extend(.icon-red_button_close_active); }
+
+					.animatedIcon;
+				} // &.uploaded .remove }}}4
+
+				&:first-child { margin-top: 18px; }
+			} // li }}}3
+		} // ul.files_list }}}2
+
+		.dragndrop_area { // {{{2
+			display: block;
+			.box-sizing(border-box);
+			background: white;
+			.size(@w, 110px);
+			border: 1px dashed @borderColor;
+			margin-left: @nw + @p;
+			margin-top: 19px;
+			.relative;
+			.transition(background-color @animationSpeed linear, border-color @animationSpeed linear);
+			z-index: 0;
+
+			&:before {
+				.pseudoBlock('Drop files here to attach them');
+				.absolute(50%, auto, auto, 0);
+				text-align: center;
+				width: 100%;
+				font-style: italic;
+				color: @notationTextColor;
+				.fontMetrics(15px, 17px);
+				margin-top: -(((17px / 2) + 1px) - (85px-62px+2px));
+				cursor: default;
+				white-space: nowrap;
+			} // &:before
+
+			&.dragndrop_over { background: #eee; }
+		} // .dragndrop_area }}}2
+
+		.add_file_by_button { // {{{2
+			display: block;
+			.absolute(auto, auto, 105px-26px, @nw + @p);
+			.size(@w, 37px);
+			text-align: center;
+			z-index: 1;
+
+			.add {
+				.smallBlueButton;
+				z-index: 5;
+				overflow: hidden;
+				.relative;
+
+				input[type=file] {
+					display: block;
+					.absolute(0, auto, auto, 0);
+					z-index: 30;
+					.size(100%);
+					.opacity(0.01);
+					cursor: pointer;
+				} // input[type=file]
+			} // .add
+		} // .add_file_by_button }}}2
+
+		&.error_response .dragndrop_area { border-color: @accentColor; }
+	} // .files }}}1
+
+	label.text, label.textarea { // {{{1
+		@mt: 14px;
+		@curW: @fw + @nw + @dw + @p + @p + 2px;
+
+		display: block;
+		clear: both;
+		width: @curW;
+		margin: 0 auto;
+		.relative(auto, -@offsetLeft);
+		
+		.name {
+			display: block;
+			float: left;
+			width: @nw;
+			margin-top: @mt + 9px;
+		} // .name
+
+		.field {
+			@fh: 38px;
+
+			display: block;
+			float: left;
+			margin-left: @p;
+			.size(@fw, @fh);
+			border: 1px solid @borderColor;
+			.relative;
+			margin-top: @mt;
+			.transition(border-color @animationSpeed linear);
+
+			input {
+				margin: 0; padding: 0; border: 0;
+				display: block;
+				.size(@fw - @ip - @ip, @ilh);
+				.absolute(0, auto, auto, 0);
+				padding-left: @ip;
+				padding-right: @ip;
+				padding-top: ((@fh - @ilh) / 2) + 1px;
+				padding-bottom: ((@fh - @ilh) / 2) - 1px;
+			}
+
+			.error_msg {
+				display: block;
+				display: none;
+				color: @accentColor;
+				background: rgba(255, 255, 255, 0.8);
+				.size(@fw + 2px, 27px);
+				.absolute(100%, auto, auto, -1px);
+				margin-top: 1px;
+				font: @contentFont;
+				font-style: italic;
+				.fontMetrics(14px, 16px);
+				z-index: 20;
+				.box-sizing(border-box);
+				padding-top: 5px;
+				white-space: nowrap;
+			}
+
+			&.error_response {
+				border-color: @accentColor;
+			}
+		} // .field
+
+		.description {
+			display: block;
+			float: left;
+			margin-left: @p;
+			width: @dw;
+			margin-top: @mt + 10px;
+			color: @notationTextColor;
+			font-style: italic;
+			.fontMetrics(14px, 18px);
+		} // .description
+
+		input, textarea {
+			.customFont('Roboto-Regular', @ifs, @ilh);
+			color: @contentColor;
+			background: white;
+		}
+
+		textarea { .fontMetrics(16px, 18px); }
+	} // label.text, label.textarea }}}1
+
+	label.textarea { // {{{1
+		@fh: 132px;
+		@ifh: 38px;
+
+		display: block;
+		clear: both;
+
+		.field {
+			height: auto;
+
+			textarea {
+				@tp: ((@ifh - @ilh) / 2) + 1px;
+				@bp: @tp;
+
+				margin: 0; padding: 0; border: 0;
+				display: block;
+				width: @fw - @ip - @ip;
+				height: @fh - @tp - @bp;
+				min-height: @fh - @tp - @bp;
+				padding-left: @ip;
+				padding-right: @ip;
+				padding-top: @tp;
+				padding-bottom: @bp;
+				resize: vertical;
+			}
+		}
+	} // label.textarea }}}1
+
+	label.submit { // {{{1
+		@w: 320px;
+
+		display: block;
+		clear: both;
+		.relative;
+		width: @w;
+		margin: 0 auto;
+
+		.name {
+			.bigBlueButton;
+			z-index: 1;
+			width: 320px;
+			margin-top: 52px;
+			.transition(background-color @animationSpeed linear, color @animationSpeed linear);
+			.relative;
+
+			&:before {
+				.pseudoBlock;
+				.bg('blue_button_spinner.gif', center center no-repeat);
+				.absolute(0, auto, auto, 0);
+				.size(100%);
+				.opacity(0);
+				.transition(opacity @animationSpeed linear);
+			}
+		}
+
+		.field {
+			.absolute(-40px, auto, auto, -40px);
+			.size(20px);
+			visibility: hidden;
+			z-index: -1;
+			overflow: hidden;
+		}
+	} // label.submit }}}1
+
+	.files .name,
+	label.text .name,
+	label.textarea .name {
+		.customFont('Roboto-Regular', @ifs, @ilh);
+	}
+
+	label.text .name, label.textarea .name { cursor: pointer; }
+
+	.warnText { color: red; padding: 0 0 12px; }
+	.successText { color: green; padding: 0 0 12px; }
+
+	&.ajax_process { // {{{1
+		label.submit span {
+			color: @skyColor;
+			&:hover { color: @skyColor; background: @skyColor; }
+			&:before { .opacity(1); }
+		}
+	} // &.ajax_process }}}1
+} // form.order_form
+
+// localizations {{{1
+
+// default is "en"
+
+html[lang=ru] body main form.order_form {
+	.files .dragndrop_area:before { content: 'или перетащите ваши файлы сюда'; }
+} // html[lang=ru] ... form.order_form
+
+// localizations }}}1

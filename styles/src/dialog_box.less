@@ -1,0 +1,82 @@
+/**
+ * Dialog box styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+html.dialog_box body {
+	height: 100% !important;
+	min-height: auto !important;
+	overflow: hidden !important;
+
+	.top_side, footer { overflow-y: scroll; }
+
+	.dialog_box_overflow { // {{{1
+		display: block;
+		background: rgba(255, 255, 255, 0.6);
+		.size(100%, 100%);
+		.fixed(0, auto, auto, 0);
+		z-index: 200;
+		.opacity(0);
+	} // .dialog_box_overflow }}}1
+
+	.dialog_box { // {{{1
+		display: table;
+		.size(100%, 100%);
+		.fixed(0, auto, auto, 0);
+		z-index: 210;
+		.opacity(0);
+
+		.wrapper {
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+
+			.wrapper_2 {
+				display: inline-block;
+				.size(406px, auto);
+				background: white;
+				border: 1px solid @borderColor;
+				.relative;
+				font: @contentFont;
+				.fontMetrics(16px, 20px);
+
+				.closer {
+					@p: 10px;
+
+					.linkNoLine;
+					.resetCSS;
+					&:extend(.icon-little_closer);
+					display: block;
+					cursor: pointer;
+					background: none;
+					.absolute(14px-@p, 10px-@p);
+					padding: @p;
+
+					&:before, &:after { margin: @p; }
+					&:before { &:extend(.icon-little_closer); }
+					&:after { &:extend(.icon-little_closer_active); }
+
+					.animatedIcon;
+				} // .closer
+
+				.messages {
+					display: block;
+					margin: 28px;
+				} // .messages
+
+				p + p { padding-top: 24px; }
+
+				.buttons {
+					display: block;
+					padding: 44px-33px 19px/2 0;
+
+					.button {
+						.smallRedButton;
+						margin: 0 19px/2 19px;
+					}
+				} // .buttons
+			} // .wrapper_2
+		} // .wrapper
+	} // .dialog_box }}}1
+} // body

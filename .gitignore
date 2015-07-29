@@ -1,0 +1,10 @@
+*.swp
+*.swo
+*.log
+
+node_modules
+grunt
+
+scripts/build
+styles/build
+styles/src/icons/*.less

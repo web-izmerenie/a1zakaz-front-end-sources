@@ -1,0 +1,89 @@
+/**
+ * "services" sub-page styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+html.services_subpage body main .services_subpage { // {{{1
+	&:after { .pseudoBlock; clear: both; }
+
+	@rightColW: 217px;
+	@opinionMargin: 46px;
+
+	.pageBlock;
+
+	.left_column { // {{{2
+		display: block;
+		margin-right: @rightColW + @masterXPaddingsLevel2;
+		padding-top: 39px;
+	} // .left_column }}}2
+
+	.right_column { // {{{2
+		display: block;
+		float: right;
+		.size(@rightColW, auto);
+		padding-top: 11px;
+		padding-bottom: @opinionMargin;
+
+		.vk_group_widget {
+			width: @rightColW;
+			min-height: 1px;
+		}
+
+		ul.submenu + .vk_group_widget { margin-top: 40px; }
+	} // .right_column }}}2
+
+	.opinions { // {{{2
+		margin-top: @opinionMargin;
+		padding-bottom: 77px;
+		clear: both;
+	} // .opinions }}}2
+
+	ul.submenu { // {{{2
+		.servicesSubmenu;
+		float: none;
+		margin: 0 auto;
+		margin-top: 20px;
+	} // ul.submenu }}}2
+} // .services_subpage }}}1
+
+html.services_subpage body { // services subpage footer {{{1
+	@newFooterHeight: 508px - @splitterHeight;
+	@formHeight: @writeToDirectorFormHeight + @splitterHeight;
+
+	main { padding-bottom: @newFooterHeight + @formHeight; }
+
+	footer {
+		height: @newFooterHeight + @formHeight;
+		margin-top: -(@newFooterHeight + @formHeight);
+
+		&:before { z-index: 10; }
+
+		.services_subpage_call_us { // {{{2
+			display: block;
+			.size(100%, @newFooterHeight - @footerHeight);
+			.absolute(0, auto, auto, 0);
+			text-align: center;
+			white-space: nowrap;
+			font-size: 15px;
+			z-index: 1;
+			background: @subBgColor;
+			.box-sizing(border-box);
+
+			p { .resetCSS; margin-top: 117px; }
+			p + p { margin-top: 10px; }
+			b { font-weight: bold; }
+
+			.caller_button {
+				.bigBlueButton;
+				margin-top: 61px;
+			}
+		} // .services_subpage_call_us }}}2
+
+		.write_to_director { // {{{2
+			border-top: 0;
+			padding-top: @newFooterHeight - @footerHeight;
+			background: white;
+		} // .write_to_director }}}2
+	} // footer
+} // services subpage footer }}}1

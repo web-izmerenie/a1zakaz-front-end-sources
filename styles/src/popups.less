@@ -1,0 +1,80 @@
+/**
+ * Popups styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+html body {
+	@YOffset: 300px;
+
+	.popup { // {{{1
+		display: block;
+		display: none;
+		.absolute(@YOffset, auto);
+		width: 800px;
+		z-index: 60;
+
+		.closer { // {{{2
+			&:extend(.icon-popup_closer);
+
+			.linkNoLine;
+			display: block;
+			cursor: pointer;
+			background: none;
+			.absolute(8px, 40px);
+			z-index: 100;
+
+			&:before { &:extend(.icon-popup_closer); }
+			&:after { &:extend(.icon-popup_closer_active); }
+
+			.animatedIcon;
+		} // .closer }}}2
+
+		.popup_title { // {{{2
+			@h: 61px;
+
+			display: block;
+			.size(auto, @h);
+			text-align: center;
+			color: @circleColor;
+			.relative;
+			text-align: center;
+
+			span {
+				display: inline-block;
+				.relative;
+				.customFont('Roboto-Bold', 46px, @h);
+				padding-left: @h + 18px;
+				padding-right: 40px;
+				white-space: nowrap;
+
+				&:before {
+					.pseudoBlock;
+					.size(@h);
+					.border-radius(@h);
+					.absolute(0, auto, auto, 0);
+					background: @circleColor;
+				}
+			} // span
+		} // .popup_title }}}2
+	} // .popup }}}1
+
+	.popup_bg_overflow {
+		display: block;
+		display: none;
+		background: white;
+		.absolute(0, auto, auto, 0);
+		.size(100%);
+		min-width: @minWidth;
+		z-index: 50;
+	} // .popup_bg_overflow
+} // html body
+
+html.popup_mode body {
+	.top_side main, .top_side .subpage_menu_wrapper, footer {
+		height: 1px;
+		overflow: hidden;
+	}
+
+	.top_side main { padding-top: 0; padding-bottom: 0; }
+} // html.popup_mode body

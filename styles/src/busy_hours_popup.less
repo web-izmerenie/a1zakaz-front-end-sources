@@ -1,0 +1,63 @@
+/**
+ * Busy hours popup styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+html body > .busy_hours_popup { // {{{1
+	.popup_title span:after {
+		@x: 27px;
+		@y: 13px;
+
+		&:extend(.icon-popup_clock);
+		.pseudoBlock;
+		.absolute(@y, auto, auto, @x);
+	}
+
+	ul.addresses {
+		@p: 40px;
+		@color: @addressesBlockTextColor;
+
+		.addressesList;
+		.resetCSS;
+		.fontMetrics(15px, 26px);
+		padding-top: 100px-(@p/2);
+		margin-left: -@p;
+		clear: left;
+		color: @color;
+
+		&:after {
+			.pseudoBlock;
+			clear: both;
+		}
+
+		li {
+			.resetCSS;
+			float: left;
+			width: (400px-(@p/2));
+			padding-top: @p;
+			margin-left: @p;
+
+			em { font-style: italic; }
+
+			.additional_contacts {
+				margin-top: 5px;
+
+				.phone {
+					font-family: @contentFontFamily;
+					.fontMetrics(15px, 26px);
+					color: @color;
+				}
+
+				a {
+					color: @color;
+
+					&:hover {
+					}
+				}
+			}
+
+			.busy_hours { margin-top: 14px; }
+		} // li
+	} // .popup ul.addresses
+} //  }}}1

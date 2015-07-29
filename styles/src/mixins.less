@@ -1,0 +1,192 @@
+/**
+ * Mixins collection
+ *
+ * @author Viacheslav Lotsmanov
+ * @author Fedor Pudeyan
+ */
+
+@import "lesshat";
+
+/* === FONTS === */
+
+.fontMetrics(@fontSize: 12px, @lineHeight: @fontSize + 2px) {
+	font-size: @fontSize;
+	line-height: @lineHeight;
+}
+
+/* === POSITION === */
+
+.relative(@top: auto, @right: auto, @bottom: auto, @left: auto) {
+	position: relative;
+	top: @top;
+	right: @right;
+	bottom: @bottom;
+	left: @left;
+}
+
+.absolute(@top: auto, @right: auto, @bottom: auto, @left: auto) {
+	position: absolute;
+	top: @top;
+	right: @right;
+	bottom: @bottom;
+	left: @left;
+}
+
+.absoluteStretch(@amount: 0) {
+	.absolute(@amount, @amount, @amount, @amount);
+}
+
+.fixed(@top: auto, @right: auto, @bottom: auto, @left: auto) {
+	position: fixed;
+	top: @top;
+	right: @right;
+	bottom: @bottom;
+	left: @left;
+}
+
+.fixedStretch(@amount: 0) {
+	.fixed(@amount, @amount, @amount, @amount);
+}
+
+/* === PSEUDO === */
+
+.pseudo(@content: '', @display: inline) {
+	content: @content;
+	display: @display;
+}
+
+.pseudoBlock(@content: '') {
+	.pseudo(@content, block);
+}
+
+/* === LINKS === */
+
+.linkUnderline(
+  @color: @linkColorUnderline,
+  @hoverColor: @activeLinkColorUnderline) {
+	border-bottom: 1px solid @color;
+	&:hover { border-bottom-color: @hoverColor; }
+}
+
+.simpleLink(
+  @color: @linkColor,
+  @hoverColor: @activeLinkColor,
+  @colorUnderline: @linkColorUnderline,
+  @hoverColorUnderline: @activeLinkColorUnderline) {
+	display: inline;
+	color: @color;
+	text-decoration: none;
+
+	&:hover { color: @hoverColor; }
+
+	.linkUnderline(@colorUnderline, @activeLinkColorUnderline);
+	.transition(@linkTransition);
+}
+
+.linkNoLine() {
+	.simpleLink();
+	border-bottom: 0;
+}
+
+.interactiveLink() {
+	.simpleLink();
+	border-bottom-style: dotted;
+	cursor: pointer;
+}
+
+/* === PATHS WRAPPERS === */
+
+.bgImg(@path) {
+	background-image: url('@{imgPrefix}@{path}?v=@{revision}');
+}
+
+.bg(@path, @addit) {
+	background: url('@{imgPrefix}@{path}?v=@{revision}') @addit;
+}
+
+/* === ANIMATED ICONS === */
+
+.animatedIcon() { // {{{1
+	&:before, &:after {
+		.pseudoBlock;
+		.absolute(0, auto, auto, 0);
+		.opacity(1);
+		.transition(opacity @animationSpeed linear);
+	}
+
+	&:after {
+		.pseudoBlock;
+		.opacity(0);
+	}
+
+	&:hover {
+		&:before { .opacity(0); }
+		&:after { .opacity(1); }
+	}
+} // .animatedIcon() }}}1
+
+/* === PAGE PRESET === */
+
+.pageBlock() {
+	display: block;
+	max-width: @maxWidth;
+	margin: 0 auto;
+	.box-sizing(border-box);
+	padding: 0 @masterXPaddingsLevel2;
+}
+
+/* === BUTTONS === */
+
+.blueButton(@paddX, @h, @pt, @fs, @lh: @fs + 2px) { // {{{1
+	.resetCSS;
+	.linkNoLine;
+	display: inline-block;
+	.size(auto, @h);
+	background: @skyColor;
+	color: white;
+	.border-radius(@h/2);
+	.customFont('Roboto-Light', @fs, @lh);
+	cursor: pointer;
+	.transition(background-color @animationSpeed linear);
+	padding-top: @pt;
+	padding-bottom: @h - @lh - @pt;
+	.box-sizing(border-box);
+	padding-left: @paddX;
+	padding-right: @paddX;
+	text-align: center;
+
+	&:hover {
+		color: white;
+		background: @brightSkyColor;
+	}
+} // .blueButton() }}}1
+
+.bigBlueButton() { .blueButton(65px, 78px, 25px, 28px); }
+.middleBlueButton() { .blueButton(45px, 57px, 17px, 22px); }
+.smallBlueButton() { .blueButton(20px, 37px, 9px, 18px); }
+
+.redButton(@paddX, @h, @pt, @fs, @lh: @fs + 2px) { // {{{1
+	.resetCSS;
+	.linkNoLine;
+	display: inline-block;
+	.size(auto, @h);
+	background: @accentFillColor;
+	color: white;
+	.border-radius(@h/2);
+	.customFont('Roboto-Light', @fs, @lh);
+	cursor: pointer;
+	.transition(background-color @animationSpeed linear);
+	padding-top: @pt + 1;
+	padding-bottom: @h - @lh - @pt - 1;
+	.box-sizing(border-box);
+	padding-left: @paddX;
+	padding-right: @paddX;
+	text-align: center;
+
+	&:hover {
+		color: white;
+		background: @accentFillActiveColor;
+	}
+} // .redButton() }}}1
+
+.smallRedButton() { .redButton(45px, 42px, 9px, 22px); }

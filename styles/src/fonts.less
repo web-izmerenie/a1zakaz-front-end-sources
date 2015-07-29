@@ -1,0 +1,30 @@
+/**
+ * Font-faces
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+// @fileName without extension
+.fontDefine(@fontName, @fileName: @fontName) {
+	font-family: '@{fontName}';
+	src: url('@{fontsPrefix}@{fileName}.eot?v=@{revision}');
+	src: url('@{fontsPrefix}@{fileName}.eot?v=@{revision}#iefix') format('embedded-opentype'),
+		url('@{fontsPrefix}@{fileName}.woff?v=@{revision}') format('woff'),
+		url('@{fontsPrefix}@{fileName}.ttf?v=@{revision}') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face { .fontDefine('Roboto-Bold'); }
+@font-face { .fontDefine('RobotoCondensed-Regular'); }
+@font-face { .fontDefine('Roboto-Light'); }
+@font-face { .fontDefine('Roboto-Medium'); }
+@font-face { .fontDefine('Roboto-Regular'); }
+@font-face { .fontDefine('Roboto-Thin'); }
+@font-face { .fontDefine('fontello'); }
+
+/* === MIXINS === */
+
+.customFont(@fontName) { font-family: @fontName, sans-serif; }
+.customFont(@fontName, @fs) { font-family: @fontName, sans-serif; .fontMetrics(@fs); }
+.customFont(@fontName, @fs, @lh) { font-family: @fontName, sans-serif; .fontMetrics(@fs, @lh); }

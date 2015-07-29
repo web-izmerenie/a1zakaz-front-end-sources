@@ -1,0 +1,120 @@
+/**
+ * "contacts" page styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+.addressesList() { // {{{1
+	@leftOffset: 50px;
+	@lineHeight: 26px;
+
+	.resetCSS; display: block;
+	padding-bottom: 60px;
+
+	li {
+		.resetCSS; background: none; display: block;
+		padding-top: 27px;
+		padding-bottom: 25px;
+
+		.address_wrapper { // {{{2
+			@minHeight: @lineHeight * 2;
+			@iconHeight: 44px;
+			@iconOffset: ((@minHeight - @iconHeight) / 2) + 1px;
+
+			display: block;
+			.relative;
+			padding-left: @leftOffset;
+			vertical-align: middle;
+			clear: both;
+			padding-bottom: 14px;
+
+			address {
+				display: table-cell;
+				line-height: @lineHeight;
+				height: @minHeight;
+				vertical-align: middle;
+
+				em { display: block; }
+			}
+
+			&:before {
+				&:extend(.icon-sheet);
+				.pseudoBlock;
+				.absolute(@iconOffset, auto, auto, 0);
+			}
+		} // .address_wrapper }}}2
+
+		.additional_contacts { // {{{2
+			display: block;
+			float: left;
+			padding-left: @leftOffset;
+			line-height: @lineHeight;
+
+			.phone { display: block; }
+
+			a {
+				display: inline-block;
+				line-height: 17px;
+				color: @contentColor;
+				border-bottom-color: @contentLinkUnderlineColor;
+
+				&:hover {
+					color: @activeLinkColor;
+					border-bottom-color: @activeLinkColorUnderline;
+				}
+			}
+		} // .additional_contacts }}}2
+
+		.busy_hours { // {{{2
+			@w: 200px;
+
+			display: block;
+			float: left;
+			padding-left: @leftOffset;
+			width: @w;
+			.relative;
+			line-height: @lineHeight;
+
+			dl {
+				display: block;
+				.relative;
+
+				dt {
+					display: block;
+					.bg('dot_line.png', 0 @lineHeight - 9px repeat-x);
+					text-transform: uppercase;
+					white-space: nowrap;
+
+					span { background: white; }
+				}
+
+				dd {
+					display: block;
+					.absolute(0, 0);
+					background: white;
+					white-space: nowrap;
+				}
+			} // dl
+		} // .busy_hours }}}2
+
+		.interactive_map { // {{{2
+			display: block;
+			clear: both;
+			border: 1px solid #dcdcdc;
+			padding: 10px;
+			.relative(25px);
+
+			.map {
+				display: block;
+				background: @plugColor;
+				height: 400px;
+			}
+		} // dl.busy_hours }}}2
+	} // li
+} // .addresses_list }}}1
+
+html body main .contacts {
+	.pageBlock;
+
+	ul.addresses { .addressesList; }
+} // .contacts

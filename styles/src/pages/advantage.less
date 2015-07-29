@@ -1,0 +1,98 @@
+/**
+ * "advantage" page styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+html body main .advantage {
+	.pageBlock;
+	padding-top: 32px;
+
+	p { .fontMetrics(16px, 18px); }
+
+	h3 {
+		.customFont('Roboto-Regular', 22px, 24px);
+		padding-top: 39px - 13px;
+	}
+
+	ol li { .fontMetrics(16px, 18px); }
+
+	h2 {
+		.resetCSS;
+		.customFont('Roboto-Bold', 24px, 26px);
+		padding-top: 36px;
+		text-align: center;
+
+		&:after { display: none; }
+	}
+
+	ul.advantages_list { // {{{1
+		.resetCSS;
+		display: block;
+		max-width: 1075px;
+		margin: 0 auto;
+		vertical-align: top;
+		text-align: center;
+		margin-top: -6px;
+		padding-bottom: 56px;
+
+		li {
+			@iconSize: 127px;
+
+			.resetCSS; background: none;
+			display: inline-block;
+			width: 48%;
+			vertical-align: top;
+			padding-left: 157px;
+			.box-sizing(border-box);
+			.relative;
+			min-height: @iconSize;
+			text-align: left;
+			margin-top: 59px;
+
+			&:nth-child(even) { margin-left: 3.4%; }
+
+			p {
+				color: #5f6d73;
+				.fontMetrics(13px, 20px);
+			}
+
+			h3 + p { padding-top: 13px; }
+
+			h3 {
+				.resetCSS;
+				.customFont('Roboto-Regular', 22px, 24px);
+				text-transform: uppercase;
+
+				&:before {
+					.pseudoBlock;
+					.absolute(0, auto, auto, 0);
+				}
+			}
+
+			&.single {
+				padding-left: 0;
+				text-align: center;
+
+				h3 {
+					padding-top: @iconSize + 21px;
+
+					&:before {
+						left: 50%;
+						margin-left: -@iconSize / 2;
+					}
+				}
+			}
+
+			&:nth-child(1) h3:before { &:extend(.icon-button_speedometer); }
+			&:nth-child(2) h3:before { &:extend(.icon-button_cup); }
+			&:nth-child(3) h3:before { &:extend(.icon-button_weight); }
+			&:nth-child(4) h3:before { &:extend(.icon-button_lock); }
+			&:nth-child(5) h3:before { &:extend(.icon-button_paper); }
+			&:nth-child(6) h3:before { &:extend(.icon-button_car); }
+			&:nth-child(7) h3:before { &:extend(.icon-button_percent); }
+			&:nth-child(8) h3:before { &:extend(.icon-button_cards); }
+			&:nth-child(9) h3:before { &:extend(.icon-button_wifi); }
+		} // li
+	} // ul.advantages_list }}}1
+} // .advantage

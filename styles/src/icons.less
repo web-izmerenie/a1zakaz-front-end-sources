@@ -1,0 +1,153 @@
+/**
+ * Icons styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+@import "icons/icons";
+@import "icons/sheets_rhombs";
+@import "icons/colored_splitters";
+
+.icons_sprite {
+	display: inline-block;
+	overflow: hidden;
+	background-repeat: no-repeat;
+}
+
+// icons {{{1
+
+.icon-wi_face,
+.icon-wi_face_active,
+
+.icon-clock,
+.icon-phone,
+.icon-person,
+.icon-rouble,
+
+.icon-print_button,
+.icon-print_button_active,
+
+.icon-empty_ink_containers,
+
+.icon-sheet,
+
+.icon-popup_closer,
+.icon-popup_closer_active,
+
+.icon-little_closer,
+.icon-little_closer_active,
+
+// popups title icons {{{2
+.icon-popup_clock,
+.icon-popup_phone,
+// popups title icons }}}2
+
+// buttons {{{2
+.icon-button_exclamation_mark,
+.icon-button_exclamation_mark_active,
+.icon-button_car,
+.icon-button_car_active,
+.icon-button_russia,
+.icon-button_russia_active,
+
+.icon-button_speedometer,
+.icon-button_cup,
+.icon-button_weight,
+.icon-button_lock,
+.icon-button_paper,
+.icon-button_percent,
+.icon-button_cards,
+.icon-button_wifi,
+
+// sheet buttons {{{3
+.icon-button_7days,
+.icon-button_percent_turquoise,
+.icon-button_percent_salad,
+.icon-button_car_sand,
+.icon-button_cards_red,
+// sheet buttons }}}3
+
+.icon-button_invert,
+// buttons }}}2
+
+.icon-quotation_shadow,
+.icon-quotation_corner,
+.icon-quotation_quote,
+
+.icon-document_sheet,
+
+.icon-red_button_close,
+.icon-red_button_close_active,
+
+.icon-red_button_abort,
+.icon-red_button_abort_active,
+
+.icon-slide_down,
+.icon-slide_down_active,
+.icon-slide_down_small,
+.icon-slide_down_small_active,
+.icon-slide_up,
+.icon-slide_up_active,
+.icon-slide_up_small,
+.icon-slide_up_small_active
+
+{
+	&:extend(.icons_sprite);
+	.bgImg('icons_sprite.png');
+}
+
+// icons }}}1
+
+// sheets rhombs {{{1
+
+.icon-services_sheet_rhombs_top,
+.icon-services_sheet_rhombs_bottom,
+.icon-advantage_sheet_rhombs_top,
+.icon-advantage_sheet_rhombs_bottom,
+.icon-our_clients_sheet_rhombs_top,
+.icon-our_clients_sheet_rhombs_bottom,
+.icon-addresses_sheet_rhombs_top,
+.icon-addresses_sheet_rhombs_bottom
+
+{
+	&:extend(.icons_sprite);
+	.bgImg('sheets_rhombs.png');
+}
+
+// sheets rhombs }}}1
+
+// colored splitters {{{1
+
+.icon-colored_splitter_sky,
+.icon-colored_splitter_sky_active,
+.icon-colored_splitter_turquoise,
+.icon-colored_splitter_turquoise_active,
+.icon-colored_splitter_salad,
+.icon-colored_splitter_salad_active,
+.icon-colored_splitter_sand,
+.icon-colored_splitter_sand_active,
+.icon-colored_splitter_scarlet,
+.icon-colored_splitter_scarlet_active,
+
+.icon-colored_splitter_filled_sky,
+.icon-colored_splitter_filled_sky_active,
+.icon-colored_splitter_filled_sky_bgactive,
+.icon-colored_splitter_filled_turquoise,
+.icon-colored_splitter_filled_turquoise_active,
+.icon-colored_splitter_filled_turquoise_bgactive,
+.icon-colored_splitter_filled_salad,
+.icon-colored_splitter_filled_salad_active,
+.icon-colored_splitter_filled_salad_bgactive,
+.icon-colored_splitter_filled_sand,
+.icon-colored_splitter_filled_sand_active,
+.icon-colored_splitter_filled_sand_bgactive,
+.icon-colored_splitter_filled_scarlet,
+.icon-colored_splitter_filled_scarlet_active,
+.icon-colored_splitter_filled_scarlet_bgactive
+
+{
+	&:extend(.icons_sprite);
+	.bgImg('colored_splitters.png');
+}
+
+// colored splitters }}}1

@@ -1,0 +1,234 @@
+/**
+ * Call me later form popup styles
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+html body > form.call_me_later_popup { // {{{1
+	.popup_title span:after {
+		@x: 14px;
+		@y: 13px;
+
+		&:extend(.icon-popup_phone);
+		.pseudoBlock;
+		.absolute(@y, auto, auto, @x);
+	}
+
+	.popup_title { margin-bottom: 64px; }
+
+	@offsetLeft: 156px + 80px;
+
+	label.text { // {{{2
+		@w: 283px;
+		@h: 38px;
+
+		display: block;
+		.size(@w, @h);
+		.relative;
+		border: 1px solid @borderColor;
+		background: white;
+		margin-left: @offsetLeft;
+		margin-top: 15px;
+		.transition(border-color @animationSpeed linear);
+
+		span {
+			display: block;
+			.absolute(8px, auto, auto, 10px);
+			white-space: nowrap;
+			height: 24px;
+		}
+
+		input {
+			.resetCSS;
+			display: block;
+			background: white;
+			width: @w - (10px*2);
+			height: 24px;
+			padding: 8px 10px 6px;
+		}
+
+		&, span, input {
+			cursor: text;
+			.customFont('Roboto-Regular', 22px, 24px);
+			color: @inputTextColor;
+		}
+
+		.error_msg {
+			display: block;
+			display: none;
+			color: @accentColor;
+			background: rgba(255, 255, 255, 0.8);
+			.size(@w + 2px, 27px);
+			.absolute(100%, auto, auto, -1px);
+			margin-top: 1px;
+			font: @contentFont;
+			font-style: italic;
+			.fontMetrics(14px, 16px);
+			z-index: 50;
+			.box-sizing(border-box);
+			padding-top: 5px;
+			white-space: nowrap;
+		}
+
+		&.error_response {
+			border-color: @accentColor;
+		}
+	} // label.text }}}2
+
+	label.checkbox { // {{{2
+		display: block;
+		margin-left: @offsetLeft;
+		margin-top: 25px;
+		.relative;
+
+		.customFont('Roboto-Regular', 20px, 22px);
+		color: @inputTextColor;
+
+		input {
+			.resetCSS;
+			display: block;
+			.size(17px);
+			visibility: hidden;
+			float: left;
+			margin-top: 1px;
+
+			& + span:before, & + span:after {
+				.pseudoBlock;
+				.size(17px);
+				.absolute(1px, auto, auto, 0);
+				background: white;
+				border: 1px solid @borderColor;
+				.transition(border-color @animationSpeed linear);
+				z-index: 10;
+			}
+
+			& + span:after {
+				.customFont('fontello', 13px, 17px);
+				overflow: hidden;
+				content: '\e800';
+				color: @inputTextColor;
+				text-align: center;
+				z-index: 20;
+				.opacity(0);
+				.transition(opacity @animationSpeed linear);
+			}
+
+			&:checked + span:after {
+				.opacity(1);
+			}
+		} // input
+
+		span {
+			display: block;
+			padding-left: 10px;
+			float: left;
+		}
+
+		&.error_response input {
+			& + span:before, & + span:after {
+				border-color: @accentColor;
+			}
+		}
+	} // label.checkbox }}}2
+
+	.time_fields { // {{{2
+		display: block;
+		float: left;
+
+		.hours, .minutes, .splitter {
+			display: block;
+			float: left;
+			.relative;
+		}
+
+		.splitter { .customFont('Roboto-Regular', 20px, 22px); }
+
+		@w: 35px; @h: 30px;
+
+		.hours, .minutes {
+			.size(@w, @h);
+			border: 1px solid @borderColor;
+			.relative(-6px);
+			.transition(border-color @animationSpeed linear);
+
+			input {
+				.resetCSS;
+				display: block;
+				.size(@w - 5px, 22px);
+				background: white;
+				color: @inputTextColor;
+				.customFont('Roboto-Regular', 20px, 22px);
+			}
+		}
+
+		.hours {
+			margin-left: 10px;
+			margin-right: 7px;
+
+			input {
+				padding: 5px 5px 3px 0;
+				text-align: right;
+			}
+		}
+
+		.minutes {
+			margin-left: 7px;
+
+			input {
+				padding: 5px 0 3px 5px;
+				text-align: left;
+			}
+		}
+
+		.hours.error_response, .minutes.error_response {
+			border-color: @accentColor;
+		}
+	} // .time_fields }}}2
+
+	label.submit { // {{{2
+		display: block;
+		clear: both;
+		.relative;
+		overflow: hidden;
+		margin-left: @offsetLeft - 18px;
+		margin-top: 46px;
+		float: left;
+
+		span {
+			.bigBlueButton;
+			z-index: 1;
+			.transition(background-color @animationSpeed linear, color @animationSpeed linear);
+
+			&:before {
+				.pseudoBlock;
+				.bg('blue_button_spinner.gif', center center no-repeat);
+				.absolute(0, auto, auto, 0);
+				.size(100%);
+				.opacity(0);
+				.transition(opacity @animationSpeed linear);
+			}
+		}
+
+		input {
+			.absolute(-40px, auto, auto, -40px);
+			.size(20px);
+			visibility: hidden;
+			z-index: -1;
+		}
+	} // label.submit }}}2
+
+	&.ajax_process { // {{{2
+		label.submit span {
+			color: @skyColor;
+
+			&:hover {
+				color: @skyColor;
+				background: @skyColor;
+			}
+
+			&:before {
+				.opacity(1);
+			}
+		}
+	} // &.ajax_process }}}2
+} // html body > form.popup.call_me_later_popup }}}1

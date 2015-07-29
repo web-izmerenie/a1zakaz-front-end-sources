@@ -1,0 +1,64 @@
+{
+  "dependencies": {
+    "grunt": "*",
+    "grunt-cli": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-preprocess": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-less": "*",
+    "grunt-wrap": "*",
+    "grunt-amdwrap": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-copy": "*",
+    "css-sprite": "*"
+  },
+  "scripts": {
+    "postinstall": "bash ./deploy.sh"
+  },
+  "repository": "https://github.com/unclechu/web-front-end-grunt-template",
+  "author": "Viacheslav Lotsmanov",
+
+  "grunt": {
+    "styles": [
+      {
+        "path": "styles",
+        "files": { "build.css": "main.less" },
+        "copyBuildTo": "../rmt/"
+      }
+    ],
+    "scripts": [
+      {
+        "path": "scripts",
+        "buildFile": "build.js",
+        "notAmdFiles": [ "*require*.js" ],
+        "amd": true,
+        "copyBuildTo": "../rmt/"
+      }
+    ],
+    "jshint": {
+      "development": true,
+      "production": true
+    },
+    "sprites": {
+      "icons": {
+        "src": [ "images/icons/*" ],
+        "css": "styles/src/icons/icons.less",
+        "sprite": "../rmt/images/icons_sprite.png"
+      },
+      "sheets_rhombs": {
+        "src": [ "images/sheets_rhombs/*" ],
+        "css": "styles/src/icons/sheets_rhombs.less",
+        "sprite": "../rmt/images/sheets_rhombs.png"
+      },
+      "colored_splitters": {
+        "src": [ "images/colored_splitters/*" ],
+        "css": "styles/src/icons/colored_splitters.less",
+        "sprite": "../rmt/images/colored_splitters.png",
+        "margin": 0
+      }
+    }
+  }
+
+}

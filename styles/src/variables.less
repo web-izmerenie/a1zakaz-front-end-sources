@@ -1,0 +1,87 @@
+/**
+ * Variables module
+ *
+ * @author Viacheslav Lotsmanov
+ */
+
+/* === PATHS === */
+
+@tplPath: '../../';
+@imgPrefix: '@{tplPath}images/';
+@fontsPrefix: '@{tplPath}fonts/';
+
+// for images and fonts
+@revision: 9;
+
+/* === SIZES === */
+
+@minWidth: 980px;
+@maxWidth: 980px;
+
+@masterXPaddingsLevel1: 15px;
+@masterXPaddingsLevel2: 15px * 2px;
+
+@splitterHeight: 38px;
+
+// without splitter
+@headerHeight: 111px;
+@footerHeight: 50px;
+
+@writeToDirectorFormHeight: 470px;
+
+@hideIndent: 50000px;
+
+/* === FONTS === */
+
+@contentFontFamily: Arial, 'Liberation Sans', Helvetica, sans-serif;
+@contentFont: 16px/24px @contentFontFamily;
+
+@h1FontSize: 49px;
+@h2FontSize: 24px;
+
+/* === COLORS === */
+
+@contentColor: #232b2f;
+
+@linkColor: #47a3cf;
+@linkColorUnderline: #c8e3f0;
+@activeLinkColor: #50bbe4;
+@activeLinkColorUnderline: #90ddfa;
+@contentColoredLinkUnderlineColor: #d7dadb;
+
+@circleColor: #69bce3;
+@activeCircleColor: @activeLinkColorUnderline;
+
+@h1Color: #686d6f;
+
+@subBgColor: #eaf0f2;
+
+@skyColor: #69bce3;
+@activeSkyColor: #72ccf6;
+@brightSkyColor: #90ddfa;
+@turquoiseColor: #92ddc7;
+@activeTurquoiseColor: #9ef0d8;
+@saladColor: #bce892;
+@activeSaladColor: #ccfc9e;
+@sandColor: #fff2ab;
+@activeSandColor: #ffffba;
+@scarletColor: #f56c59;
+@activeScarletColor: #ff7561;
+
+@borderColor: #c7c7c7;
+@inputTextColor: #939393;
+
+@plugColor: #eaeaea;
+
+@accentFillColor: @activeScarletColor;
+@accentFillActiveColor: #ff5239;
+@accentColor: #cd4829;
+
+@addressesBlockTextColor: #2c414b;
+@contentLinkUnderlineColor: #bcc1c3;
+@notationTextColor: #677278;
+
+/* === TRANSITIONS === */
+
+@animationSpeed: ~'0.2s';
+@linkTransition: color @animationSpeed linear, border-bottom-color @animationSpeed linear;
